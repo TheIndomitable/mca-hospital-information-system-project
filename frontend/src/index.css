@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system_ui, sans-serif;
+  }
+}
+
+.hospital-gradient {
+  background: linear-gradient(135deg, #0f766e 0%, #164e63 100%);
+}
