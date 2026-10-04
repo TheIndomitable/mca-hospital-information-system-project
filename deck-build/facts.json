@@ -1,0 +1,1058 @@
+{
+ "tables": [
+  {
+   "table": "admissions",
+   "fks": [
+    "patients",
+    "doctors",
+    "beds"
+   ]
+  },
+  {
+   "table": "appointments",
+   "fks": [
+    "patients",
+    "doctors"
+   ]
+  },
+  {
+   "table": "beds",
+   "fks": [
+    "rooms"
+   ]
+  },
+  {
+   "table": "departments",
+   "fks": [
+    "hospitals"
+   ]
+  },
+  {
+   "table": "doctors",
+   "fks": [
+    "employees"
+   ]
+  },
+  {
+   "table": "doctor_schedules",
+   "fks": [
+    "doctors"
+   ]
+  },
+  {
+   "table": "employees",
+   "fks": [
+    "roles",
+    "departments"
+   ]
+  },
+  {
+   "table": "hospitals",
+   "fks": []
+  },
+  {
+   "table": "invoices",
+   "fks": [
+    "patients"
+   ]
+  },
+  {
+   "table": "invoice_items",
+   "fks": [
+    "invoices"
+   ]
+  },
+  {
+   "table": "lab_tests",
+   "fks": [
+    "test_types",
+    "patients",
+    "doctors",
+    "employees"
+   ]
+  },
+  {
+   "table": "lab_results",
+   "fks": [
+    "lab_tests"
+   ]
+  },
+  {
+   "table": "medicine_batches",
+   "fks": [
+    "medicines"
+   ]
+  },
+  {
+   "table": "medical_records",
+   "fks": [
+    "patients",
+    "doctors"
+   ]
+  },
+  {
+   "table": "medicines",
+   "fks": []
+  },
+  {
+   "table": "nurse_assignments",
+   "fks": [
+    "admissions",
+    "employees"
+   ]
+  },
+  {
+   "table": "patients",
+   "fks": [
+    "users"
+   ]
+  },
+  {
+   "table": "payments",
+   "fks": [
+    "invoices"
+   ]
+  },
+  {
+   "table": "pharmacies",
+   "fks": [
+    "hospitals"
+   ]
+  },
+  {
+   "table": "pharmacy_stock",
+   "fks": [
+    "pharmacies",
+    "medicine_batches"
+   ]
+  },
+  {
+   "table": "prescriptions",
+   "fks": [
+    "patients",
+    "doctors",
+    "pharmacies",
+    "lab_tests"
+   ]
+  },
+  {
+   "table": "prescription_medicines",
+   "fks": [
+    "prescriptions",
+    "medicines"
+   ]
+  },
+  {
+   "table": "roles",
+   "fks": []
+  },
+  {
+   "table": "rooms",
+   "fks": [
+    "hospitals",
+    "departments"
+   ]
+  },
+  {
+   "table": "test_types",
+   "fks": []
+  },
+  {
+   "table": "users",
+   "fks": [
+    "roles"
+   ]
+  },
+  {
+   "table": "vitals",
+   "fks": [
+    "patients",
+    "employees"
+   ]
+  }
+ ],
+ "routes": [
+  {
+   "file": "admission",
+   "prefix": "/admissions",
+   "count": 8,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{admission_id}"
+    ],
+    [
+     "GET",
+     "/patient/{patient_id}"
+    ],
+    [
+     "GET",
+     "/doctor/{doctor_id}"
+    ],
+    [
+     "PATCH",
+     "/{admission_id}"
+    ],
+    [
+     "PATCH",
+     "/{admission_id}/discharge"
+    ],
+    [
+     "DELETE",
+     "/{admission_id}"
+    ]
+   ]
+  },
+  {
+   "file": "appointments",
+   "prefix": "/appointments",
+   "count": 8,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/doctor/me"
+    ],
+    [
+     "GET",
+     "/doctor/{doctor_id}/booked-slots"
+    ],
+    [
+     "GET",
+     "/{appointment_id}"
+    ],
+    [
+     "GET",
+     "/patient/{patient_id}"
+    ],
+    [
+     "PUT",
+     "/{appointment_id}"
+    ],
+    [
+     "DELETE",
+     "/{appointment_id}"
+    ]
+   ]
+  },
+  {
+   "file": "auth",
+   "prefix": "/auth",
+   "count": 2,
+   "paths": [
+    [
+     "POST",
+     "/register/patient"
+    ],
+    [
+     "POST",
+     "/login"
+    ]
+   ]
+  },
+  {
+   "file": "bed",
+   "prefix": "/beds",
+   "count": 7,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/room/{room_id}"
+    ],
+    [
+     "GET",
+     "/room/{room_id}/available"
+    ],
+    [
+     "GET",
+     "/{bed_id}"
+    ],
+    [
+     "PATCH",
+     "/{bed_id}"
+    ],
+    [
+     "DELETE",
+     "/{bed_id}"
+    ]
+   ]
+  },
+  {
+   "file": "chat",
+   "prefix": "/chat",
+   "count": 1,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ]
+   ]
+  },
+  {
+   "file": "dashboard",
+   "prefix": "/dashboard",
+   "count": 2,
+   "paths": [
+    [
+     "GET",
+     "/stats"
+    ],
+    [
+     "GET",
+     "/patient-stats"
+    ]
+   ]
+  },
+  {
+   "file": "departments",
+   "prefix": "/departments",
+   "count": 6,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/hospital/{hospital_id}"
+    ],
+    [
+     "GET",
+     "/{department_id}"
+    ],
+    [
+     "PATCH",
+     "/{department_id}"
+    ],
+    [
+     "DELETE",
+     "/{department_id}"
+    ]
+   ]
+  },
+  {
+   "file": "doctor",
+   "prefix": "/doctors",
+   "count": 8,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/employee/{employee_id}"
+    ],
+    [
+     "GET",
+     "/me"
+    ],
+    [
+     "GET",
+     "/available"
+    ],
+    [
+     "GET",
+     "/{doctor_id}"
+    ],
+    [
+     "PATCH",
+     "/{doctor_id}"
+    ],
+    [
+     "DELETE",
+     "/{doctor_id}"
+    ]
+   ]
+  },
+  {
+   "file": "doctor_Schedule",
+   "prefix": "/doctor-schedules",
+   "count": 7,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/doctor/{doctor_id}"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/me"
+    ],
+    [
+     "GET",
+     "/{schedule_id}"
+    ],
+    [
+     "PATCH",
+     "/{schedule_id}"
+    ],
+    [
+     "DELETE",
+     "/{schedule_id}"
+    ]
+   ]
+  },
+  {
+   "file": "employee",
+   "prefix": "/employees",
+   "count": 6,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/department/{department_id}"
+    ],
+    [
+     "GET",
+     "/{employee_id}"
+    ],
+    [
+     "PATCH",
+     "/{employee_id}"
+    ],
+    [
+     "DELETE",
+     "/{employee_id}"
+    ]
+   ]
+  },
+  {
+   "file": "hospital",
+   "prefix": "/hospitals",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{hospital_id}"
+    ],
+    [
+     "PATCH",
+     "/{hospital_id}"
+    ],
+    [
+     "DELETE",
+     "/{hospital_id}"
+    ]
+   ]
+  },
+  {
+   "file": "invoice_item",
+   "prefix": "/invoice-items",
+   "count": 6,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/my/{invoice_id}"
+    ],
+    [
+     "GET",
+     "/{item_id}"
+    ],
+    [
+     "PATCH",
+     "/{item_id}"
+    ],
+    [
+     "DELETE",
+     "/{item_id}"
+    ]
+   ]
+  },
+  {
+   "file": "invoices",
+   "prefix": "/invoices",
+   "count": 6,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/my"
+    ],
+    [
+     "GET",
+     "/{invoice_id}"
+    ],
+    [
+     "PATCH",
+     "/{invoice_id}"
+    ],
+    [
+     "DELETE",
+     "/{invoice_id}"
+    ]
+   ]
+  },
+  {
+   "file": "lab",
+   "prefix": "/lab-tests",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{lab_test_id}"
+    ],
+    [
+     "PATCH",
+     "/{lab_test_id}"
+    ],
+    [
+     "DELETE",
+     "/{lab_test_id}"
+    ]
+   ]
+  },
+  {
+   "file": "lab_results",
+   "prefix": "/lab-results",
+   "count": 6,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{result_id}"
+    ],
+    [
+     "GET",
+     "/patient/{patient_id}"
+    ],
+    [
+     "PATCH",
+     "/{result_id}"
+    ],
+    [
+     "DELETE",
+     "/{result_id}"
+    ]
+   ]
+  },
+  {
+   "file": "medical_batch",
+   "prefix": "/medicine-batches",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{batch_id}"
+    ],
+    [
+     "PATCH",
+     "/{batch_id}"
+    ],
+    [
+     "DELETE",
+     "/{batch_id}"
+    ]
+   ]
+  },
+  {
+   "file": "medical_record",
+   "prefix": "/medical-records",
+   "count": 7,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/doctor/me"
+    ],
+    [
+     "GET",
+     "/patient/{patient_id}"
+    ],
+    [
+     "GET",
+     "/doctor/{doctor_id}"
+    ],
+    [
+     "GET",
+     "/{record_id}"
+    ],
+    [
+     "PATCH",
+     "/{record_id}"
+    ],
+    [
+     "DELETE",
+     "/{record_id}"
+    ]
+   ]
+  },
+  {
+   "file": "medicine",
+   "prefix": "/medicines",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{medicine_id}"
+    ],
+    [
+     "PUT",
+     "/{medicine_id}"
+    ],
+    [
+     "DELETE",
+     "/{medicine_id}"
+    ]
+   ]
+  },
+  {
+   "file": "nurse_assignment",
+   "prefix": "/nurse-assignments",
+   "count": 7,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/admission/{admission_id}"
+    ],
+    [
+     "GET",
+     "/nurse/{nurse_id}"
+    ],
+    [
+     "GET",
+     "/{assignment_id}"
+    ],
+    [
+     "PATCH",
+     "/{assignment_id}"
+    ],
+    [
+     "DELETE",
+     "/{assignment_id}"
+    ]
+   ]
+  },
+  {
+   "file": "patient",
+   "prefix": "/patients",
+   "count": 7,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/me"
+    ],
+    [
+     "GET",
+     "/doctor/me"
+    ],
+    [
+     "GET",
+     "/{patient_id}"
+    ],
+    [
+     "PUT",
+     "/{patient_id}"
+    ],
+    [
+     "DELETE",
+     "/{patient_id}"
+    ]
+   ]
+  },
+  {
+   "file": "payment",
+   "prefix": "/payments",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{payment_id}"
+    ],
+    [
+     "PATCH",
+     "/{payment_id}"
+    ],
+    [
+     "DELETE",
+     "/{payment_id}"
+    ]
+   ]
+  },
+  {
+   "file": "pharmacy",
+   "prefix": "/pharmacies",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{pharmacy_id}"
+    ],
+    [
+     "PATCH",
+     "/{pharmacy_id}"
+    ],
+    [
+     "DELETE",
+     "/{pharmacy_id}"
+    ]
+   ]
+  },
+  {
+   "file": "pharmacyStock",
+   "prefix": "/pharmacy-stock",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{pharmacy_id}/{batch_id}"
+    ],
+    [
+     "PATCH",
+     "/{pharmacy_id}/{batch_id}"
+    ],
+    [
+     "DELETE",
+     "/{pharmacy_id}/{batch_id}"
+    ]
+   ]
+  },
+  {
+   "file": "prescription",
+   "prefix": "/prescriptions",
+   "count": 6,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/patient/{patient_id}"
+    ],
+    [
+     "GET",
+     "/{prescription_id}"
+    ],
+    [
+     "PATCH",
+     "/{prescription_id}"
+    ],
+    [
+     "DELETE",
+     "/{prescription_id}"
+    ]
+   ]
+  },
+  {
+   "file": "prescription_medicine",
+   "prefix": "/prescription-medicines",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{prescription_id}/{medicine_id}"
+    ],
+    [
+     "PATCH",
+     "/{prescription_id}/{medicine_id}"
+    ],
+    [
+     "DELETE",
+     "/{prescription_id}/{medicine_id}"
+    ]
+   ]
+  },
+  {
+   "file": "role",
+   "prefix": "/roles",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{role_id}"
+    ],
+    [
+     "PATCH",
+     "/{role_id}"
+    ],
+    [
+     "DELETE",
+     "/{role_id}"
+    ]
+   ]
+  },
+  {
+   "file": "room",
+   "prefix": "/rooms",
+   "count": 7,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/hospital/{hospital_id}"
+    ],
+    [
+     "GET",
+     "/department/{department_id}"
+    ],
+    [
+     "GET",
+     "/{room_id}"
+    ],
+    [
+     "PATCH",
+     "/{room_id}"
+    ],
+    [
+     "DELETE",
+     "/{room_id}"
+    ]
+   ]
+  },
+  {
+   "file": "test",
+   "prefix": "/test-types",
+   "count": 5,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/{test_type_id}"
+    ],
+    [
+     "PATCH",
+     "/{test_type_id}"
+    ],
+    [
+     "DELETE",
+     "/{test_type_id}"
+    ]
+   ]
+  },
+  {
+   "file": "users",
+   "prefix": "/users",
+   "count": 4,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/{user_id}"
+    ],
+    [
+     "PATCH",
+     "/{user_id}"
+    ],
+    [
+     "DELETE",
+     "/{user_id}"
+    ]
+   ]
+  },
+  {
+   "file": "vitals",
+   "prefix": "/vitals",
+   "count": 7,
+   "paths": [
+    [
+     "POST",
+     "/"
+    ],
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/patient/{patient_id}"
+    ],
+    [
+     "GET",
+     "/employee/{employee_id}"
+    ],
+    [
+     "GET",
+     "/{vital_id}"
+    ],
+    [
+     "PATCH",
+     "/{vital_id}"
+    ],
+    [
+     "DELETE",
+     "/{vital_id}"
+    ]
+   ]
+  }
+ ]
+}
